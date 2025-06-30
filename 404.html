@@ -1,72 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 Not Found</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #23263a 0%, #1a1c2b 100%);
-      color: #f8fafc;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omiya Robin - Software Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="ss/styles.css">
+    <style>
+/* ========================================================================== */
+/* POLISHED RESPONSIVE CSS FOR INDEX.HTML (INLINED) */
+/* ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #f59e0b;
+    --dark-bg: #0f172a;
+    --dark-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --glow: 0 0 30px rgba(99, 102, 241, 0.3);
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(148, 163, 184, 0.1);
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --header-height: 160px;
+    --border-radius: 15px;
+    --border-radius-sm: 8px;
+    --transition: all 0.3s ease;
+}
+body {
+    font-family: var(--font-primary);
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: var(--transition);
+}
+body.dark-theme {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: var(--text-primary);
+}
+body.light-theme {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+    color: #232946;
+}
+.card {
+    background: var(--dark-card);
+    color: var(--text-primary);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+.card-title {
+    color: var(--text-primary);
+}
+.card-subtitle {
+    color: var(--accent-color);
+}
+.card-text {
+    color: var(--text-secondary);
+}
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--gradient);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(99, 102, 241, 0.13);
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    margin-top: 2.8rem;
+}
+.download-btn:hover,
+.download-btn:focus {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.18);
+    color: #fff;
+    text-decoration: none;
+}
+.download-btn i {
+    font-size: 1.3em;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+.icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+}
+.gradient-bg-blue { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.gradient-bg-green { background: linear-gradient(135deg, #22d3ee, #38bdf8); }
+.gradient-bg-purple { background: linear-gradient(135deg, #a78bfa, #6366f1); }
+.gradient-bg-yellow { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+
+/* Dynamic animated background (bubbles/gradient orbs) */
+.dynamic-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.35;
+  filter: blur(12px);
+  animation: floatOrb 18s linear infinite;
+  will-change: transform;
+}
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-60px) scale(1.08); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Moving dynamic background (animated gradient waves) */
+.moving-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.wave {
+  position: absolute;
+  left: 0; width: 200vw; height: 300px;
+  opacity: 0.18;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-color));
+  filter: blur(32px);
+  border-radius: 50%;
+  animation: moveWave 18s linear infinite;
+}
+.wave.wave2 {
+  top: 40vh;
+  opacity: 0.13;
+  animation-duration: 24s;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color), var(--secondary-color), var(--accent-color));
+}
+.wave.wave3 {
+  top: 70vh;
+  opacity: 0.10;
+  animation-duration: 32s;
+  background: linear-gradient(90deg, var(--secondary-color), var(--accent-color), var(--primary-color), var(--secondary-color));
+}
+@keyframes moveWave {
+  0% { transform: translateX(-30vw) scaleX(1.1); }
+  50% { transform: translateX(10vw) scaleX(1.05); }
+  100% { transform: translateX(-30vw) scaleX(1.1); }
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+        border-radius: 1rem !important;
+        font-size: 0.98rem !important;
     }
-    .error-container {
-      background: rgba(30,41,59,0.85);
-      border-radius: 2rem;
-      box-shadow: 0 8px 32px rgba(31,38,135,0.18);
-      padding: 3rem 2.5rem;
-      max-width: 400px;
-      margin: 2rem;
+    .download-btn {
+        font-size: 1rem !important;
+        padding: 0.7rem 1.2rem !important;
+        width: 100%;
+        justify-content: center;
     }
-    .error-code {
-      font-size: 5rem;
-      font-weight: 700;
-      color: #f59e0b;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-    }
-    .error-message {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: #cbd5e1;
-    }
-    .home-link {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: #fff;
-      border-radius: 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .home-link:hover {
-      background: linear-gradient(135deg, #8b5cf6, #6366f1);
-      transform: translateY(-2px) scale(1.04);
-    }
-    @media (max-width: 500px) {
-      .error-container { padding: 2rem 1rem; }
-      .error-code { font-size: 3.2rem; }
-      .error-message { font-size: 1.1rem; }
-    }
-  </style>
+}
+    </style>
 </head>
-<body>
-  <div class="error-container">
-    <div class="error-code">404</div>
-    <div class="error-message">Oops! The page you are looking for does not exist.</div>
-    <a href="startup.html" class="home-link">Go Home</a>
-  </div>
+<body style="margin:0; padding:0; background:linear-gradient(135deg, #23263a 0%, #1a1c2b 100%); min-height:100vh;">
+    <div class="moving-bg" id="moving-bg">
+      <div class="wave wave1" style="top:10vh;"></div>
+      <div class="wave wave2"></div>
+      <div class="wave wave3"></div>
+    </div>
+    <div class="dynamic-bg" id="dynamic-bg"></div>
+    <div class="bg-animation"></div>
+    <section id="intro" class="content-section active" style="min-height:100vh; display:flex; align-items:center; justify-content:center;">
+      <div class="card" style="max-width:600px; min-width:320px; margin:0 auto; text-align:center; padding:3.5rem 2.5rem; border-radius:2.5rem; box-shadow:0 12px 40px 0 rgba(31,38,135,0.22); background:#181b2a;">
+        <img src="photo.jpg" alt="Omiya Robin Avatar" style="width:110px; height:110px; border-radius:50%; object-fit:cover; border:4px solid var(--primary-color); background:#fff; box-shadow:0 2px 16px rgba(99,102,241,0.13); margin-bottom:1.2rem;">
+        <h1 class="card-title" style="font-size:2.2rem; margin-bottom:0.5rem; color:var(--accent-color);">Omiya Robin</h1>
+        <h2 class="card-subtitle" style="font-size:1.3rem; color:var(--text-primary); margin-bottom:1.2rem;">Software Developer | IT Specialist</h2>
+        <p class="card-text" style="color:var(--text-secondary); font-size:1.15rem; margin-bottom:2.2rem;">
+          Welcome to my portfolio! I am passionate about building impactful software solutions and collaborating on innovative IT projects.<br>
+          <span style="color:var(--accent-color); font-weight:600;">Let's create something amazing together.</span>
+        </p>
+        <div class="card" style="background:#23263a; border-radius:1.5rem; box-shadow:0 2px 12px rgba(99,102,241,0.10); padding:1.5rem 1rem; margin-bottom:2rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2.5rem; justify-items:center;">
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <span class="icon-circle gradient-bg-blue" style="width:44px; height:44px; font-size:1.3rem;"><i data-feather="user"></i></span>
+              <div style="text-align:left;">
+                <div class="skill-title" style="font-size:1rem; color:var(--accent-color);">Name</div>
+                <div style="color:var(--text-primary); font-weight:600; font-size:1rem;">Omiya Robin</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <span class="icon-circle gradient-bg-green" style="width:44px; height:44px; font-size:1.3rem;"><i data-feather="map-pin"></i></span>
+              <div style="text-align:left;">
+                <div class="skill-title" style="font-size:1rem; color:var(--accent-color);">Address</div>
+                <div style="color:var(--text-primary); font-weight:600; font-size:1rem;">Laroo, Gulu, Uganda</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <span class="icon-circle gradient-bg-purple" style="width:44px; height:44px; font-size:1.3rem;"><i data-feather="phone"></i></span>
+              <div style="text-align:left;">
+                <div class="skill-title" style="font-size:1rem; color:var(--accent-color);">Phone</div>
+                <div style="color:var(--text-primary); font-weight:600; font-size:1rem;">+256758510666</div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <span class="icon-circle gradient-bg-yellow" style="width:44px; height:44px; font-size:1.3rem;"><i data-feather="mail"></i></span>
+              <div style="text-align:left;">
+                <div class="skill-title" style="font-size:1rem; color:var(--accent-color);">Email</div>
+                <div style="color:var(--text-primary); font-weight:600; font-size:1rem;">robinyhanug@gmail.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="404.html" class="download-btn" style="padding:1rem 2.5rem; font-size:1.2rem;">View More About Me <i data-feather="arrow-right"></i></a>
+        <div style="margin-top:2.2rem;">
+          <p style="color:var(--text-secondary); font-size:1.05rem; margin-bottom:0.7rem;">Today is <span style="color:var(--accent-color); font-weight:600;">June 12, 2025</span></p>
+        </div>
+      </div>
+    </section>
+    <script>
+        feather.replace();
+        // Dynamic background orbs
+        function randomBetween(a, b) { return a + Math.random() * (b - a); }
+        const colors = [
+          'rgba(99,102,241,0.35)', // blue
+          'rgba(139,92,246,0.32)', // purple
+          'rgba(245,158,11,0.28)', // yellow
+          'rgba(34,211,238,0.22)', // cyan
+          'rgba(168,139,250,0.22)', // light purple
+        ];
+        const orbCount = 7;
+        const bg = document.getElementById('dynamic-bg');
+        for (let i = 0; i < orbCount; i++) {
+          const orb = document.createElement('div');
+          orb.className = 'orb';
+          const size = randomBetween(120, 320);
+          orb.style.width = orb.style.height = size + 'px';
+          orb.style.left = randomBetween(-10, 90) + 'vw';
+          orb.style.top = randomBetween(-10, 80) + 'vh';
+          orb.style.background = colors[Math.floor(Math.random()*colors.length)];
+          orb.style.animationDuration = randomBetween(14, 26) + 's';
+          orb.style.animationDelay = (-1 * randomBetween(0, 20)) + 's';
+          bg.appendChild(orb);
+        }
+    </script>
 </body>
 </html>
